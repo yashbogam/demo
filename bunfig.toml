@@ -1,0 +1,19 @@
+# Bun configuration file
+
+[install]
+# Specifies which registry to use when installing packages
+registry = "https://registry.npmjs.org"
+# Cache packages to speed up installations
+cache = true
+
+# Development configuration
+[dev]
+# Port to run the dev server on
+port = 3000
+# Open the browser when starting the dev server
+open = true
+
+# Build configuration
+[build]
+# Use SWC for faster builds
+swc = true 
