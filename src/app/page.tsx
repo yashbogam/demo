@@ -28,12 +28,21 @@ import { PageWrapper } from "@/components/ui/page-wrapper";
 export async function generateMetadata(): Promise<Metadata> {
   const pageTitle = "Accelerate Your Medical Research with DataMaster"; // Example title for the homepage OG image
   const ogImageUrl = `/api/og?title=${encodeURIComponent(pageTitle)}`;
+  
+  // Determine the base URL - use environment variable if available, or fallback
+  let baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!baseUrl) {
+    // For local development or when env isn't available
+    baseUrl = process.env.NODE_ENV === 'development' 
+      ? 'http://localhost:3000' 
+      : 'https://datamaster.vercel.app';
+  }
 
   return {
     // You can add other metadata here if needed, like title, description for the page itself
     title: "DataMaster - Medical Research Platform",
     description: "Access high-quality healthcare data to accelerate your research, analytics, and ML projects.",
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://datamaster.vercel.app"),
+    metadataBase: new URL(baseUrl),
     openGraph: {
       title: "DataMaster - Advancing Medical Research", // OG specific title
       description: "High-quality healthcare data, analytics, and ML projects.", // OG specific description
