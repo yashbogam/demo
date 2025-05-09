@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
-import { initializeAmplitude } from "@/lib/amplitude";
-import { useEffect } from "react";
+import { AmplitudeInitializer } from "@/components/AmplitudeInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +18,6 @@ export const metadata: Metadata = {
   title: "DataMaster",
   description: "Your complete solution for data management and visualization",
 };
-
-// Client Component wrapper for Amplitude initialization
-function AmplitudeInitializer({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    initializeAmplitude();
-  }, []);
-
-  return <>{children}</>;
-}
 
 export default function RootLayout({
   children,

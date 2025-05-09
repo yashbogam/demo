@@ -1,9 +1,11 @@
-import * as amplitude from '@amplitude/analytics-react-native';
+import { init, track } from '@amplitude/analytics-browser';
 
 // Initialize Amplitude with API key
 export const initializeAmplitude = () => {
-  amplitude.init('6a9e3f7b622ff0db7c10c9f47e3dbd99');
+  init('6a9e3f7b622ff0db7c10c9f47e3dbd99');
 };
 
-// Export the amplitude instance for direct use elsewhere
-export { amplitude }; 
+// Export tracking function for use elsewhere
+export const trackEvent = (eventName: string, eventProperties?: Record<string, any>) => {
+  track(eventName, eventProperties);
+}; 
