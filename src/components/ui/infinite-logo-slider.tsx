@@ -16,10 +16,10 @@ export const InfiniteLogoSlider = ({ logos, speed = 30 }: { logos: Logo[], speed
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative flex overflow-hidden w-full py-6 bg-black">
-      <div className="flex-none w-full flex items-center justify-around gap-8">
+    <div className="relative flex overflow-hidden w-full py-8 bg-black">
+      <div className="flex-none w-full flex items-center justify-around">
         <motion.div 
-          className="flex gap-8 md:gap-16 items-center"
+          className="flex items-center"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ 
             duration: speed, 
@@ -31,14 +31,15 @@ export const InfiniteLogoSlider = ({ logos, speed = 30 }: { logos: Logo[], speed
           {duplicatedLogos.map((logo, idx) => (
             <div 
               key={`logo-${idx}`} 
-              className="flex-none grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+              className="flex-none grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 px-10"
+              style={{ width: '200px', display: 'flex', justifyContent: 'center' }}
             >
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="h-12 md:h-16 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </div>
           ))}

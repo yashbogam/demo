@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
-import { AmplitudeInitializer } from "@/components/AmplitudeInitializer";
 import MixpanelInitializer from "@/components/MixpanelInitializer";
 
 const geistSans = Geist({
@@ -31,12 +30,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
         <MixpanelInitializer />
-        <AmplitudeInitializer>
-          <Header />
-          <main>
-            {children}
-          </main>
-        </AmplitudeInitializer>
+        <Header />
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );

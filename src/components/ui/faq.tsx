@@ -3,28 +3,32 @@
 import React, { useState } from "react";
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(4); // The 5th item (index 4) will be open by default
+  const [openIndex, setOpenIndex] = useState(0); // The 1st item will be open by default
 
   const faqItems = [
     {
-      question: "What types of healthcare datasets do you offer?",
-      answer: "We offer a comprehensive range of healthcare datasets including electronic health records (anonymized), medical imaging data, clinical trial data, genomic information, pharmaceutical research data, and public health statistics. All datasets comply with relevant privacy regulations."
+      question: "What format are the datasets provided in?",
+      answer: "All datasets are provided in JSON format with a consistent structure featuring instruction, input, and output fields, making them easy to process and integrate with machine learning frameworks."
     },
     {
-      question: "How is data privacy and security maintained?",
-      answer: "We maintain HIPAA compliance through robust security protocols, including end-to-end encryption, secure access controls, regular security audits, and comprehensive data anonymization processes. All users must comply with our strict data usage agreements to ensure ethical handling of sensitive information."
+      question: "Can I use these datasets for commercial applications?",
+      answer: "Yes, your purchase includes commercial usage rights, allowing you to use these datasets to develop and deploy commercial AI applications in healthcare."
     },
     {
-      question: "Can I integrate DataMaster with existing systems?",
-      answer: "Yes, DataMaster offers flexible API integration options compatible with most popular healthcare analytics platforms, EHR systems, and research tools. Our developer documentation provides comprehensive guides for seamless integration with your existing workflows and systems."
+      question: "Do I need specialized hardware to work with these datasets?",
+      answer: "The datasets themselves are standard JSON files that can be processed on any modern computer. However, training large AI models with these datasets may require GPU resources, depending on your specific implementation."
     },
     {
-      question: "Is there a trial version available?",
-      answer: "We offer a 30-day free trial with access to sample datasets and core platform features. This allows researchers and organizations to evaluate the platform's capabilities before committing to a subscription. Contact our sales team to arrange a personalized demo and trial setup."
+      question: "How often are the datasets updated?",
+      answer: "This is a one-time purchase of the current version of the datasets. Updates and expanded versions may be offered separately in the future."
     },
     {
-      question: "What support options are available for users?",
-      answer: "We provide multiple levels of support including comprehensive documentation, video tutorials, regular webinars, email support, and dedicated account managers for enterprise clients. Our technical support team is available during business hours, and emergency support is provided 24/7 for critical issues. We also offer customized training sessions for teams new to the platform."
+      question: "Are the medical responses in the datasets clinically validated?",
+      answer: "The datasets have been curated to provide high-quality, evidence-based medical information. However, they are intended for AI training and research purposes and should not replace professional medical advice in clinical settings."
+    },
+    {
+      question: "What programming languages are supported by the example code?",
+      answer: "The example code is provided in Python, which is the most common language for AI and machine learning development. The JSON format of the datasets allows for easy integration with any programming language that supports JSON parsing."
     }
   ];
 

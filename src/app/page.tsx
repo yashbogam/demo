@@ -5,8 +5,9 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { HeroHeading } from "@/components/ui/hero-heading";
 import { CustomHoverButton } from "@/components/ui/custom-hover-button";
 import { BentoGridItem } from "@/components/ui/bento-grid";
-import { BoxReveal } from "@/components/magicui/box-reveal";
+
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Image from "next/image";
 import {
   IconArrowWaveRightUp,
@@ -23,6 +24,11 @@ import {
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { PageWrapper } from "@/components/ui/page-wrapper";
+import { CodeBlock } from "@/components/ui/code-block";
+import { CollapsibleCodeBlock } from "@/components/ui/collapsible-code-block";
+
+// Import ExpandableCardDemo components
+import ExpandableCardDemoStandard from "@/components/expandable-card-demo-standard";
 
 // Generate Open Graph metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -118,45 +124,39 @@ const testimonials = [
 // Sample logos for the InfiniteLogoSlider
 const partnerLogos = [
   {
-    src: "/logos/mayo-clinic.svg",
-    alt: "Mayo Clinic",
-    width: 150,
-    height: 60
-  },
-  {
-    src: "/logos/stanford-medicine.svg",
-    alt: "Stanford Medicine",
+    src: "/optimized-images/HuggingFace.svg",
+    alt: "Hugging Face",
     width: 180,
     height: 60
   },
   {
-    src: "/logos/cleveland-clinic.svg",
-    alt: "Cleveland Clinic",
-    width: 160,
-    height: 60
-  },
-  {
-    src: "/logos/mount-sinai.svg",
-    alt: "Mount Sinai",
-    width: 140,
-    height: 60
-  },
-  {
-    src: "/logos/john-hopkins.svg",
-    alt: "Johns Hopkins Medicine",
+    src: "/optimized-images/openai.svg",
+    alt: "OpenAI",
     width: 180,
     height: 60
   },
   {
-    src: "/logos/nih.svg",
-    alt: "National Institutes of Health",
-    width: 140,
+    src: "/optimized-images/Microsoft.svg.webp",
+    alt: "Microsoft",
+    width: 180,
     height: 60
   },
   {
-    src: "/logos/mass-general.svg",
-    alt: "Massachusetts General Hospital",
-    width: 170,
+    src: "/optimized-images/google.svg",
+    alt: "Google",
+    width: 180,
+    height: 60
+  },
+  {
+    src: "/optimized-images/nvidia.svg",
+    alt: "NVIDIA", 
+    width: 180,
+    height: 60
+  },
+  {
+    src: "/optimized-images/Kaggle.svg.webp",
+    alt: "Kaggle",
+    width: 180,
     height: 60
   },
 ];
@@ -189,17 +189,33 @@ export default function Home() {
             <div className="hidden md:block md:w-3/5 relative">
               <div className="relative right-0">
                 <Image
-                  src="/hero.svg"
+                  src="/optimized-images/hero.svg"
                   alt="Medical data visualization"
                   width={900}
                   height={900}
                   className="object-contain"
-                  priority
+                  priority={true}
+                  quality={95}
                 />
               </div>
             </div>
           </div>
         </WavyBackground>
+
+        {/* Key Benefits Section */}
+        <div className="bg-black py-16">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white">Key Benefits</h2>
+              <p className="text-xl mt-4 text-gray-300 max-w-3xl mx-auto">
+                Why leading healthcare AI researchers and companies choose our datasets
+              </p>
+            </div>
+            <div className="mx-auto max-w-3xl">
+              <ExpandableCardDemoStandard />
+            </div>
+          </div>
+        </div>
 
         {/* Container Scroll Section */}
         <div className="bg-black -mt-2">
@@ -272,69 +288,157 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Logo Slider Section */}
-        <section className="bg-black pt-0 pb-16">
+        {/* Code Example Section */}
+        <section className="bg-black pt-4 pb-12">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-2xl text-center mb-8 text-white/70">Trusted by Leading Healthcare Organizations</h2>
-            <InfiniteLogoSlider logos={partnerLogos} speed={40} />
+            <h3 className="text-2xl font-medium text-center mb-2 text-white">Example Python Notebook</h3>
+            <p className="text-center text-gray-300 mb-4">Get started quickly with our datasets using this sample code</p>
+            <h4 className="text-xl font-medium text-center mb-8 text-white/80">Loading and Using the Medical Datasets</h4>
+            <div className="max-w-3xl mx-auto">
+              <CollapsibleCodeBlock
+                language="python"
+                filename="medical_dataset_integration.py"
+                initialVisibleLines={20}
+                code={`# Sample Python Notebook for Medical Dataset Integration
+
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+# 1. Loading the datasets
+def load_medical_dataset(file_path):
+    """Load a medical dataset from a JSON file."""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data
+
+# Example paths (replace with your actual paths after unzipping)
+entrance_exam_path = './medical_datasets/evaluation-medical-instruction-dataset.json'
+clinical_qa_path = './medical_datasets/HealthCareMagic-100k.json'
+medical_facts_path = './medical_datasets/medical_meadow_wikidoc_medical_flashcards.json'
+
+# Load datasets
+entrance_exam_data = load_medical_dataset(entrance_exam_path)
+clinical_qa_data = load_medical_dataset(clinical_qa_path)
+medical_facts_data = load_medical_dataset(medical_facts_path)
+
+print(f"Entrance Exam Questions: {len(entrance_exam_data)}")
+print(f"Clinical Q&A Pairs: {len(clinical_qa_data)}")
+print(f"Medical Facts: {len(medical_facts_data)}")
+
+# 2. Converting to DataFrame for analysis
+def convert_to_dataframe(data):
+    """Convert dataset to DataFrame for easier analysis."""
+    return pd.DataFrame(data)
+
+entrance_exam_df = convert_to_dataframe(entrance_exam_data)
+clinical_qa_df = convert_to_dataframe(clinical_qa_data)
+medical_facts_df = convert_to_dataframe(medical_facts_data)
+
+# Display sample entries
+print("\\nSample Entrance Exam Question:")
+print(entrance_exam_df.iloc[0])
+
+print("\\nSample Clinical Q&A:")
+print(clinical_qa_df.iloc[0])
+
+print("\\nSample Medical Fact:")
+print(medical_facts_df.iloc[0])
+
+# 3. Preparing data for model fine-tuning
+def prepare_for_training(df, test_size=0.1):
+    """Prepare dataset for model training."""
+    # Combine instruction, input, and output into training format
+    df['text'] = df.apply(lambda row: f"Instruction: {row['instruction']}\\nInput: {row['input']}\\nOutput: {row['output']}", axis=1)
+    
+    # Split into training and validation sets
+    train_df, val_df = train_test_split(df, test_size=test_size, random_state=42)
+    
+    return train_df, val_df
+
+# Prepare datasets
+train_entrance, val_entrance = prepare_for_training(entrance_exam_df)
+train_clinical, val_clinical = prepare_for_training(clinical_qa_df)
+train_facts, val_facts = prepare_for_training(medical_facts_df)
+
+print(f"\\nTraining set sizes:")
+print(f"Entrance Exam: {len(train_entrance)}")
+print(f"Clinical Q&A: {len(train_clinical)}")
+print(f"Medical Facts: {len(train_facts)}")
+
+# 4. Example: Fine-tuning a model (pseudocode)
+def finetune_model(training_data, model_name="meta-llama/Llama-2-7b-chat-hf"):
+    """Fine-tune a model on medical data (conceptual example)."""
+    # Load tokenizer and model
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name)
+    
+    # Tokenize data and prepare for training
+    # ... (tokenization code)
+    
+    # Set up training arguments
+    # ... (training arguments)
+    
+    # Fine-tune model
+    # ... (training loop)
+    
+    return model, tokenizer
+
+# Note: This function is a placeholder showing the concept, not actual implementation
+# model, tokenizer = finetune_model(train_clinical)
+
+# 5. Example: Creating a specialized medical chatbot
+def create_medical_chatbot(model, tokenizer):
+    """Create a medical chatbot using the fine-tuned model."""
+    def answer_medical_question(question):
+        prompt = f"Instruction: If you are a doctor, please answer the medical question based on your knowledge.\\nInput: {question}\\nOutput:"
+        inputs = tokenizer(prompt, return_tensors="pt")
+        output = model.generate(**inputs, max_length=200)
+        return tokenizer.decode(output[0], skip_special_tokens=True)
+    
+    return answer_medical_question
+
+# Example usage (pseudocode)
+# medical_bot = create_medical_chatbot(model, tokenizer)
+# response = medical_bot("What are the symptoms of diabetes?")
+# print(response)
+
+# 6. Data Analysis Example
+def analyze_dataset_content(df, column='input', n_words=10):
+    """Analyze content of the dataset."""
+    # Count common medical terms
+    all_text = ' '.join(df[column].astype(str))
+    words = all_text.lower().split()
+    word_freq = pd.Series(words).value_counts().head(n_words)
+    
+    # Plot common terms
+    plt.figure(figsize=(10, 6))
+    word_freq.plot(kind='bar')
+    plt.title(f'Most Common Terms in {column} Column')
+    plt.xlabel('Term')
+    plt.ylabel('Frequency')
+    plt.tight_layout()
+    
+    return word_freq
+
+# Example analysis
+common_terms = analyze_dataset_content(clinical_qa_df)
+print("\\nMost common terms in clinical questions:")
+print(common_terms)`}
+                highlightLines={[10, 11, 12, 13, 14, 42, 43, 44, 45, 46, 47, 48, 70, 71, 72, 73, 74]}
+              />
+            </div>
           </div>
         </section>
 
-        {/* BoxReveal Section */}
-        <section className="py-0 bg-black -mt-4">
+        {/* Logo Slider Section */}
+        <section className="bg-black pt-0 pb-16">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <div className="max-w-4xl mx-auto flex flex-col gap-16 py-16">
-              <div className="flex flex-col md:flex-row items-center gap-10">
-                <div className="md:w-1/2">
-                  <BoxReveal boxColor="#000000" duration={0.7}>
-                    <h3 className="text-3xl font-bold text-white mb-4">Powerful Analytics Tools</h3>
-                    <p className="text-gray-300 text-lg">
-                      Our platform provides cutting-edge analytics capabilities that help researchers and healthcare professionals extract meaningful insights from complex datasets.
-                    </p>
-                  </BoxReveal>
-                </div>
-                <div className="md:w-1/2 mt-8 md:mt-0">
-                  <BoxReveal boxColor="#000000" duration={0.8} width="100%">
-                    <div className="bg-black p-6 rounded-xl shadow-lg">
-                      <div className="aspect-video bg-black rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
-                          <path d="M3 3v18h18"></path>
-                          <path d="M9 9l0 8"></path>
-                          <path d="M15 13l0 4"></path>
-                          <path d="M21 5l0 16"></path>
-                          <path d="M21 11l-6-6"></path>
-                          <path d="M3 15l6-6"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </BoxReveal>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-                <div className="md:w-1/2">
-                  <BoxReveal boxColor="#000000" duration={0.7}>
-                    <h3 className="text-3xl font-bold text-white mb-4">Secure & Compliant</h3>
-                    <p className="text-gray-300 text-lg">
-                      We prioritize the security and privacy of sensitive healthcare data, ensuring all information is handled in accordance with industry regulations.
-                    </p>
-                  </BoxReveal>
-                </div>
-                <div className="md:w-1/2 mt-8 md:mt-0">
-                  <BoxReveal boxColor="#000000" duration={0.8} width="100%">
-                    <div className="bg-black p-6 rounded-xl shadow-lg">
-                      <div className="aspect-video bg-black rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
-                          <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                          <circle cx="12" cy="16" r="1"></circle>
-                        </svg>
-                      </div>
-                    </div>
-                  </BoxReveal>
-                </div>
-              </div>
-            </div>
+            <h2 className="text-2xl text-center mb-8 text-white/70">TRUSTED BY DEVELOPERS FROM AROUND THE WORLD </h2>
+            <InfiniteLogoSlider logos={partnerLogos} speed={60} />
           </div>
         </section>
 
@@ -348,20 +452,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Simple Card Section */}
-        <section className="bg-black pt-0 -mt-1">
+        {/* Applications & Use Cases Section */}
+        <section className="bg-black py-16 pt-16">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-12 text-white">Our Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto py-10">
-              {cardItems.map((item, idx) => (
-                <a href={item.link} key={`service-card-${idx}`} className="block">
-                  <div className="rounded-2xl h-full w-full p-8 overflow-hidden bg-black border border-neutral-800 hover:border-neutral-700 transition-all duration-200">
-                    <h4 className="text-xl font-semibold text-white mb-4">{item.title}</h4>
-                    <p className="text-neutral-400 leading-relaxed">{item.description}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <h2 className="text-4xl font-medium text-center mb-12 text-white">Applications & Use Cases</h2>
+            <HoverEffect items={cardItems} />
           </div>
         </section>
 
@@ -416,7 +511,7 @@ export default function Home() {
               <div className="w-full md:w-1/2 flex justify-center">
                 <div className="w-72 h-72 md:w-96 md:h-96">
                   <Image 
-                    src="/002.svg" 
+                    src="/optimized-images/002.svg" 
                     alt="Abstract Design" 
                     width={400} 
                     height={400} 
@@ -568,53 +663,50 @@ const items = [
 
 const stickyScrollContent = [
   {
-    title: "Comprehensive Data Collection",
-    description: "Access our extensive library of healthcare datasets, carefully curated and maintained for research and analysis.",
+    title: "Medical Entrance Exam Dataset",
+    description: "Thousands of real-world medical entrance exam multiple-choice questions with expert answers covering all major specialties and topics. Format: JSON with instruction-input-output fields",
     content: (
-      <div className="h-full w-full flex items-center justify-center text-white p-4">
-        <div className="flex flex-col items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mb-4">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-          <span className="text-lg font-medium">Data Library</span>
-        </div>
+      <div className="h-full w-full flex items-center justify-center">
+        <Image 
+          src="/optimized-images/med_exam.webp" 
+          alt="Medical Entrance Exam Dataset visualization" 
+          width={320}
+          height={240}
+          className="object-contain h-full w-full"
+          quality={85}
+        />
       </div>
     ),
   },
   {
-    title: "Advanced Visualization Tools",
-    description: "Transform complex medical data into intuitive visualizations that reveal patterns and insights at a glance.",
+    title: "Clinical Consultation Dataset",
+    description: "Patient-doctor consultation Q&A pairs with detailed physician responses covering diagnosis, treatment options, and medical advice. Format: JSON with instruction-input-output fields",
     content: (
-      <div className="h-full w-full flex items-center justify-center text-white p-4">
-        <div className="flex flex-col items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mb-4">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="3" y1="9" x2="21" y2="9"></line>
-            <line x1="9" y1="21" x2="9" y2="9"></line>
-          </svg>
-          <span className="text-lg font-medium">Visual Analytics</span>
-        </div>
+      <div className="h-full w-full flex items-center justify-center">
+        <Image 
+          src="/optimized-images/clinical_dataset.webp" 
+          alt="Clinical Consultation Dataset visualization" 
+          width={320}
+          height={240}
+          className="object-contain h-full w-full"
+          quality={85}
+        />
       </div>
     ),
   },
   {
-    title: "Research Collaboration",
-    description: "Connect with experts and collaborate on groundbreaking research projects using our secure data-sharing features.",
+    title: "Medical Knowledge Facts",
+    description: "Concise, evidence-based answers to medical questions covering biochemistry, physiology, pharmacology, and clinical knowledge. Format: JSON with instruction-input-output fields",
     content: (
-      <div className="h-full w-full flex items-center justify-center text-white p-4">
-        <div className="flex flex-col items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mb-4">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-          </svg>
-          <span className="text-lg font-medium">Collaboration Network</span>
-        </div>
+      <div className="h-full w-full flex items-center justify-center">
+        <Image 
+          src="/optimized-images/med_knowledge.webp" 
+          alt="Medical Knowledge Facts visualization" 
+          width={320}
+          height={240}
+          className="object-contain h-full w-full"
+          quality={85}
+        />
       </div>
     ),
   },
@@ -622,33 +714,33 @@ const stickyScrollContent = [
 
 const cardItems = [
   {
-    title: "Data Analytics",
-    description: "Our advanced analytics tools help you transform raw data into actionable insights for better healthcare outcomes.",
+    title: "Medical AI Model Training",
+    description: "Fine-tune general large language models for medical domain specific applications. Create models that understand medical terminology and context for accurate responses.",
     link: "#analytics",
   },
   {
-    title: "Machine Learning Models",
-    description: "Leverage our pre-trained healthcare ML models to predict patient outcomes and optimize treatment plans.",
+    title: "Clinical Decision Support",
+    description: "Develop AI systems that assist healthcare providers by suggesting potential diagnoses, treatment options, and relevant clinical guidelines based on patient data.",
     link: "#ml-models",
   },
   {
-    title: "HIPAA Compliance",
-    description: "All our data processing and storage solutions meet strict healthcare industry security standards.",
+    title: "Medical Education",
+    description: "Create intelligent tutoring systems for medical students, offering personalized learning experiences, question-answering, and exam preparation assistance.",
     link: "#compliance",
   },
   {
-    title: "Research Collaboration",
-    description: "Connect with leading medical researchers and institutions through our secure collaboration platform.",
+    title: "Patient Communication",
+    description: "Build AI tools that help explain medical concepts to patients in accessible language, answer common questions, and provide general health education.",
     link: "#research",
   },
   {
-    title: "Data Visualization",
-    description: "Create stunning visual representations of complex medical data for easier interpretation.",
+    title: "Medical Research",
+    description: "Enhance information retrieval systems for medical researchers, enabling quick access to relevant knowledge and evidence-based information.",
     link: "#visualization",
   },
   {
-    title: "Custom Solutions",
-    description: "Our team can build tailored data solutions to meet your specific healthcare organization needs.",
+    title: "Medical Benchmarking",
+    description: "Utilize our datasets to evaluate the performance of existing AI models on medical knowledge tasks, identifying areas for improvement.",
     link: "#custom",
   },
 ]; 

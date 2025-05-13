@@ -34,3 +34,58 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Image Optimization
+
+The project includes an automated image optimization workflow to improve performance:
+
+### Optimized Images
+
+Large images are automatically optimized and converted to WebP format for better performance. The optimized versions are stored in the `public/optimized-images/` directory.
+
+### Running the Optimization Script
+
+To optimize images:
+
+```bash
+# Install dependencies (if not already done)
+npm install
+
+# Run the optimization script
+npm run optimize-images
+```
+
+### Benefits
+
+- Significantly reduced file sizes (original JPGs were multiple MBs, now under 100KB)
+- Modern WebP format for better compression while maintaining quality
+- Automatic width limitation to 1200px for responsive layouts
+- Improved page load times and Core Web Vitals
+
+### Usage in Components
+
+When using images, utilize the Next.js Image component with best practices:
+
+```tsx
+import Image from 'next/image';
+
+// For critical above-the-fold images
+<Image
+  src="/optimized-images/example.webp" 
+  alt="Description"
+  width={500}
+  height={300}
+  priority={true}
+  quality={90}
+/>
+
+// For below-the-fold images
+<Image
+  src="/optimized-images/example.webp" 
+  alt="Description"
+  width={500}
+  height={300}
+  loading="lazy"
+  quality={80}
+/>
+```

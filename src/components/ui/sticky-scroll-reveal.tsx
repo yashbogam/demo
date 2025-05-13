@@ -40,10 +40,16 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
+  const backgroundColors = [
+    "#000000" // black
+  ];
+
+
   return (
     <motion.div
-      // Using fixed black background instead of changing colors
-      style={{ backgroundColor: "#000000" }}
+      animate={{
+        backgroundColor: backgroundColors[activeCard % backgroundColors.length],
+      }}
       className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
       ref={ref}
     >
@@ -79,9 +85,8 @@ export const StickyScroll = ({
         </div>
       </div>
       <div
-        style={{ background: "#000000" }}
         className={cn(
-          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-black lg:block",
+          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md lg:block",
           contentClassName,
         )}
       >
