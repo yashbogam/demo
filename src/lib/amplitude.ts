@@ -1,11 +1,14 @@
-import { init, track } from '@amplitude/analytics-browser';
+import * as amplitude from '@amplitude/analytics-browser';
 
-// Initialize Amplitude with API key
-export const initializeAmplitude = () => {
-  init('6a9e3f7b622ff0db7c10c9f47e3dbd99');
+const AMPLITUDE_API_KEY = '6a9e3f7b622ff0db7c10c9f47e3dbd99'; // Your Amplitude API key
+
+export const initAmplitude = () => {
+  if (typeof window !== 'undefined' && !(window as any).amplitudeInitialized) {
+    amplitude.init(AMPLITUDE_API_KEY, {
+      defaultTracking: true,
+    });
+    (window as any).amplitudeInitialized = true;
+  }
 };
 
-// Export tracking function for use elsewhere
-export const trackEvent = (eventName: string, eventProperties?: Record<string, any>) => {
-  track(eventName, eventProperties);
-}; 
+export default amplitude; 

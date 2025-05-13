@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { initializeAmplitude } from "@/lib/amplitude";
+import { initAmplitude } from "@/lib/amplitude";
 
 export function AmplitudeInitializer({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    initializeAmplitude();
+    initAmplitude();
   }, []);
 
   return <>{children}</>;
