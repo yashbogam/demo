@@ -9,6 +9,8 @@ import { Tabs } from "@/components/ui/tabs";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Image from "next/image";
 import { Timeline } from "@/components/ui/timeline";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import {
   IconArrowWaveRightUp,
   IconBoxAlignRightFilled,
@@ -188,9 +190,11 @@ export default function Home() {
                 Access high-quality healthcare data to accelerate your medical research, analytics, and machine learning projects.
               </p>
               <div className="mt-8">
-                <CustomHoverButton>
-                  Browse Datasets
-                </CustomHoverButton>
+                <a href="https://link.datamaster.tech/lsqzy" target="_blank" rel="noopener noreferrer">
+                  <CustomHoverButton>
+                    Download Datasets
+                  </CustomHoverButton>
+                </a>
               </div>
             </div>
             <div className="hidden md:block md:w-3/5 relative">
@@ -251,9 +255,11 @@ export default function Home() {
                             <li>Access diverse medical scenarios for robust model development</li>
                             <li>Support research in medical NLP, question-answering, and clinical decision support</li>
                           </ul>
-                          <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
-                            Access Datasets
-                          </button>
+                          <a href="https://link.datamaster.tech/lsqzy" target="_blank" rel="noopener noreferrer">
+                            <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                              Access Datasets
+                            </button>
+                          </a>
                         </div>
                       </div>
                     )
@@ -276,9 +282,11 @@ export default function Home() {
                             <li>Reduce data acquisition and annotation costs</li>
                             <li>Create superior medical AI applications with comprehensive knowledge coverage</li>
                           </ul>
-                          <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
-                            Access Datasets
-                          </button>
+                          <a href="https://link.datamaster.tech/lsqzy" target="_blank" rel="noopener noreferrer">
+                            <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                              Access Datasets
+                            </button>
+                          </a>
                         </div>
                       </div>
                     )
@@ -301,9 +309,11 @@ export default function Home() {
                             <li>Generate unlimited practice questions and explanations</li>
                             <li>Build systems that provide evidence-based explanations</li>
                           </ul>
-                          <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
-                            Access Datasets
-                          </button>
+                          <a href="https://link.datamaster.tech/lsqzy" target="_blank" rel="noopener noreferrer">
+                            <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                              Access Datasets
+                            </button>
+                          </a>
                         </div>
                       </div>
                     )
@@ -512,10 +522,44 @@ print(common_terms)`}
           </div>
         </section>
 
+        {/* Dataset Access Links Section */}
+        <section className="bg-black py-8">
+          <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-center text-center">
+              <p className="text-white text-xl mr-4">Access Sample datasets here:</p>
+              <div className="flex flex-col md:flex-row items-center justify-center mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-6">
+                <div>
+                  <LinkPreview 
+                    url="https://link.datamaster.tech/kaggle"
+                    width={300}
+                    height={150}
+                  >
+                    <span className="text-blue-400 hover:text-blue-300 font-medium transition-colors whitespace-nowrap">
+                      Kaggle
+                    </span>
+                  </LinkPreview>
+                </div>
+                
+                <div>
+                  <LinkPreview 
+                    url="https://link.datamaster.tech/huggingface"
+                    width={300}
+                    height={150}
+                  >
+                    <span className="text-blue-400 hover:text-blue-300 font-medium transition-colors whitespace-nowrap">
+                      HuggingFace
+                    </span>
+                  </LinkPreview>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Timeline Section - How It Works */}
-<section className="bg-black py-16">
-  <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-    <Timeline  
+        <section className="bg-black py-16">
+          <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
+            <Timeline  
               data={[
                 {
                   title: "1. Complete Purchase",
@@ -582,17 +626,16 @@ print(common_terms)`}
           </div>
         </section>
 
-        {/* New Section with 3D Pin and SVG */}
+        {/* New Section with 3D Pin */}
         <section className="bg-black py-16">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-16 text-white">Connect With Us</h2>
-            <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row items-stretch justify-between max-w-6xl mx-auto">
               {/* Left Side - 3D Pin */}
-              <div className="w-full md:w-1/2 flex justify-center mb-12 md:mb-0">
+              <div className="w-full md:w-1/2 flex items-center justify-center p-8 mb-12 md:mb-0 order-2 md:order-1">
                 <div className="h-64">
                   <PinContainer
                     title="Contact Our Team"
-                    href="/contact"
+                    href="mailto:harryjosh@datamaster.tech"
                   >
                     <div className="flex flex-col items-center justify-center p-4">
                       <h3 className="text-xl font-bold text-white mb-4">Let's Connect</h3>
@@ -601,7 +644,8 @@ print(common_terms)`}
                       </p>
                       <div className="mt-4 bg-blue-500/20 p-3 rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 mx-auto">
-                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </svg>
                       </div>
                     </div>
@@ -609,37 +653,38 @@ print(common_terms)`}
                 </div>
               </div>
               
-              {/* Right Side - SVG */}
-              <div className="w-full md:w-1/2 flex justify-center">
-                <div className="w-72 h-72 md:w-96 md:h-96">
-                  <Image 
-                    src="/optimized-images/002.svg" 
-                    alt="Abstract Design" 
-                    width={400} 
-                    height={400} 
-                    className="w-full h-full"
+              {/* Right Side - typewriter */}
+              <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-8 order-1 md:order-2 mb-12 md:mb-0 md:ml-8">
+                <p className="text-white text-xl mb-6">Complete Medical Dataset Collection</p>
+                
+                <div className="whitespace-nowrap mb-8">
+                  <span className="text-white text-xl md:text-xl lg:text-xl font-bold">Full access to 15 specialized </span>
+                  <TypewriterEffect
+                    words={[
+                      { text: "Datasets.", className: "text-blue-500" },
+                    ]}
+                    className="text-xl md:text-xl lg:text-xl inline-block"
+                    cursorClassName="bg-blue-500 h-4 md:h-4 lg:h-4"
                   />
+                </div>
+                
+                <div className="flex space-x-6">
+                  <a href="https://link.datamaster.tech/lsqzy" target="_blank" rel="noopener noreferrer">
+                    <PulsatingButton 
+                      pulseColor="f8f9f5" 
+                      duration="10s"
+                      className="px-8 py-3 rounded-full bg-white text-black hover:bg-gray-200 transition-colors"
+                    >
+                      Access now
+                    </PulsatingButton>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Link Preview Section */}
-        <div className="bg-black flex justify-center">
-          <div className="text-center">
-            <p className="text-white/60 text-sm mb-2">Developed by</p>
-            <LinkPreview 
-              url="https://github.com/yourusername"
-              width={300}
-              height={150}
-            >
-              <span className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
-                DataMaster Development Team
-              </span>
-            </LinkPreview>
-          </div>
-        </div>
+        
 
         {/* Footer */}
         <footer className="bg-gradient-to-t from-blue-950/30 to-black pt-16 pb-8">
