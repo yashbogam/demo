@@ -10,136 +10,62 @@ const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const execPromise = promisify(exec);
 
-async function ensureDirectoryExists(dir) {
-  if (!(await exists(dir))) {
-    await mkdir(dir, { recursive: true });
-    console.log(`Created directory: ${dir}`);
-  }
+const PUBLIC_DIR = path.join(process.cwd(), 'public');
+const OUTPUT_DIR = path.join(PUBLIC_DIR, 'optimized-images');
+
+// Create output directory if it doesn't exist
+if (!fs.existsSync(OUTPUT_DIR)) {
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-// Simple SVG optimizer function
-async function optimizeSvg(inputPath, outputPath) {
-  try {
-    // Read the SVG file
-    const svgContent = await readFile(inputPath, 'utf8');
-    
-    // Basic SVG optimization - remove comments, extra spaces, and newlines
-    const optimizedSvg = svgContent
-      .replace(/<!--(.*?)-->/g, '') // Remove comments
-      .replace(/>\s+</g, '><') // Remove whitespace between tags
-      .replace(/\s{2,}/g, ' ') // Replace multiple spaces with a single space
-      .trim();
-    
-    // Write the optimized SVG to the destination
-    await writeFile(outputPath, optimizedSvg);
-    
-    console.log(`✅ Optimized SVG: ${outputPath}`);
-    return true;
-  } catch (error) {
-    console.error(`❌ Error optimizing SVG ${inputPath}:`, error.message);
-    return false;
-  }
-}
+// Image files to optimize
+const imageFiles = [
+  'clinical.jpg',
+  'qna.jpg',
+  'Medical-tools.jpg',
+  'information.jpg',
+  'management.jpg', 
+  'documentation.jpg',
+  'support.jpg'
+];
 
-async function main() {
-  // Ensure the optimized-images directory exists
-  const outputDir = 'public/optimized-images';
-  await ensureDirectoryExists(outputDir);
+async function optimizeImages() {
+  console.log('Starting image optimization...');
   
-  // Large JPGs to optimize
-  const largeImages = [
-    'med_knowledge.jpg',
-    'clinical_dataset.jpg',
-    'med_exam.jpg',
-    'coverage.jpg',
-    'integration.jpg',
-    'ai-training.jpg',
-    'data-quality.jpg',
-  ];
-
-  // Process JPGs to optimized WebP
-  for (const imageName of largeImages) {
-    const inputPath = `public/${imageName}`;
-    const outputPath = `${outputDir}/${imageName.replace('.jpg', '.webp')}`;
+  for (const file of imageFiles) {
+    const inputPath = path.join(PUBLIC_DIR, file);
+    // Convert to lowercase and use webp format for better compression
+    const outputName = file.toLowerCase().replace(/\.[^.]+$/, '.webp');
+    const outputPath = path.join(OUTPUT_DIR, outputName);
     
-    try {
-      if (!(await exists(inputPath))) {
-        console.warn(`Warning: ${inputPath} does not exist. Skipping.`);
+    // Skip if file doesn't exist
+    if (!fs.existsSync(inputPath)) {
+      console.log(`Skipping ${file} - file not found`);
         continue;
       }
       
-      console.log(`Optimizing ${imageName}...`);
+    console.log(`Optimizing ${file}...`);
+    
+    try {
       await sharp(inputPath)
-        .resize(1200) // Limit max width to 1200px while maintaining aspect ratio
-        .webp({ quality: 80 }) // Convert to WebP with 80% quality
+        .resize({ width: 1200, height: 800, fit: 'inside', withoutEnlargement: true })
+        .webp({ quality: 80 })
         .toFile(outputPath);
       
-      console.log(`✅ Created optimized ${outputPath}`);
+      const inputStats = fs.statSync(inputPath);
+      const outputStats = fs.statSync(outputPath);
+      const savedSize = ((inputStats.size - outputStats.size) / inputStats.size * 100).toFixed(2);
+      
+      console.log(`✅ ${file} → ${outputName} (${savedSize}% smaller)`);
     } catch (error) {
-      console.error(`❌ Error optimizing ${imageName}:`, error.message);
+      console.error(`❌ Error optimizing ${file}:`, error);
     }
   }
 
-  // PNG images to convert to WebP
-  const pngImages = [
-    'Microsoft.svg.png',
-    'Kaggle.svg.png'
-  ];
-
-  // Process PNGs to WebP
-  for (const imageName of pngImages) {
-    const inputPath = `public/${imageName}`;
-    const outputPath = `${outputDir}/${imageName.replace('.png', '.webp')}`;
-    
-    try {
-      if (!(await exists(inputPath))) {
-        console.warn(`Warning: ${inputPath} does not exist. Skipping.`);
-        continue;
-      }
-      
-      console.log(`Converting ${imageName} to WebP...`);
-      await sharp(inputPath)
-        .webp({ quality: 85 })
-        .toFile(outputPath);
-      
-      console.log(`✅ Created WebP version: ${outputPath}`);
-    } catch (error) {
-      console.error(`❌ Error converting ${imageName}:`, error.message);
-    }
-  }
-
-  // SVG files to optimize
-  const svgImages = [
-    'openai.svg',
-    'nvidia.svg',
-    'google.svg',
-    'HuggingFace.svg',
-    'hero.svg',
-    '002.svg'
-  ];
-
-  // Process SVGs - copy to optimized folder
-  for (const imageName of svgImages) {
-    const inputPath = `public/${imageName}`;
-    const outputPath = `${outputDir}/${imageName}`;
-    
-    try {
-      if (!(await exists(inputPath))) {
-        console.warn(`Warning: ${inputPath} does not exist. Skipping.`);
-        continue;
-      }
-      
-      console.log(`Optimizing SVG ${imageName}...`);
-      await optimizeSvg(inputPath, outputPath);
-    } catch (error) {
-      console.error(`❌ Error processing SVG ${imageName}:`, error.message);
-    }
-  }
-
-  console.log(`\n🎉 Image optimization complete! Optimized images are in ${outputDir}`);
+  console.log('Optimization complete!');
 }
 
-main().catch(err => {
-  console.error('Fatal error:', err);
+optimizeImages().catch(err => {
+  console.error('Failed to optimize images:', err);
   process.exit(1);
 }); 

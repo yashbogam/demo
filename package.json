@@ -16,6 +16,7 @@
   "dependencies": {
     "@amplitude/analytics-react-native": "^1.4.13",
     "@radix-ui/react-hover-card": "^1.1.13",
+    "@radix-ui/react-tabs": "^1.1.11",
     "@react-native-async-storage/async-storage": "^2.1.2",
     "@tabler/icons-react": "^3.31.0",
     "class-variance-authority": "^0.7.1",
@@ -31,7 +32,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-syntax-highlighter": "^15.6.1",
-    "sharp": "^0.34.1",
+    "sharp": "^0.33.1",
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^3.3.0"
   },

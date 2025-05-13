@@ -5,10 +5,10 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { HeroHeading } from "@/components/ui/hero-heading";
 import { CustomHoverButton } from "@/components/ui/custom-hover-button";
 import { BentoGridItem } from "@/components/ui/bento-grid";
-
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { Tabs } from "@/components/ui/tabs";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Image from "next/image";
+import { Timeline } from "@/components/ui/timeline";
 import {
   IconArrowWaveRightUp,
   IconBoxAlignRightFilled,
@@ -21,6 +21,13 @@ import {
   IconBrandLinkedin,
   IconBrandGithub,
   IconMail,
+  IconStethoscope,
+  IconMessageQuestion,
+  IconSchool,
+  IconUserCircle,
+  IconPill,
+  IconFileText,
+  IconHeartbeat,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { PageWrapper } from "@/components/ui/page-wrapper";
@@ -167,7 +174,7 @@ export default function Home() {
       <div className="bg-black overflow-hidden">
         {/* Hero Section */}
         <WavyBackground 
-          containerClassName="min-h-screen w-full pt-24 pb-0" 
+          containerClassName="min-h-screen w-full pt-24 pb-20" 
           backgroundFill="#000000"
           blur={10}
           waveWidth={100}
@@ -203,7 +210,7 @@ export default function Home() {
         </WavyBackground>
 
         {/* Key Benefits Section */}
-        <div className="bg-black py-16">
+        <div className="bg-black pt-12 pb-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-white">Key Benefits</h2>
@@ -217,62 +224,107 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Container Scroll Section */}
-        <div className="bg-black -mt-2">
-          <ContainerScroll
-            titleComponent={
-              <h1 className="text-4xl font-semibold text-white mb-10">
-                <span className="text-blue-500">Transforming Healthcare</span> with Data-Driven Insights
-              </h1>
-            }
-          >
-            <div className="flex flex-col items-center justify-center h-full bg-black text-white space-y-6 p-4 md:p-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Discover Our Comprehensive Data Platform</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
-                <div className="bg-gray-900 p-6 rounded-lg">
-                  <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Curated Datasets</h3>
-                  <p className="text-gray-300">Access to verified healthcare data collections from trusted sources.</p>
-                </div>
-                <div className="bg-gray-900 p-6 rounded-lg">
-                  <div className="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Advanced Analytics</h3>
-                  <p className="text-gray-300">Powerful tools to analyze and visualize complex medical data.</p>
-                </div>
-                <div className="bg-gray-900 p-6 rounded-lg">
-                  <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">HIPAA Compliant</h3>
-                  <p className="text-gray-300">All data handling follows strict security and privacy standards.</p>
-                </div>
-              </div>
-              <div className="mt-8 w-full max-w-4xl">
-                <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-r from-blue-800 to-purple-900 flex items-center justify-center">
-                  <div className="p-8 text-center">
-                    <h3 className="text-2xl font-bold mb-4">Driving Medical Innovation</h3>
-                    <p className="text-xl">Join researchers and healthcare professionals using our platform to advance medical knowledge and improve patient outcomes.</p>
-                  </div>
-                </div>
-              </div>
+        {/* Data Categories Section with Tabs */}
+        <div className="bg-black py-16 pb-24">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white">Why Choose Our Medical Datasets?</h2>
             </div>
-          </ContainerScroll>
+            <div className="mx-auto max-w-4xl">
+              <Tabs 
+                tabs={[
+                  {
+                    title: "Researchers & Academic Institutions",
+                    value: "Researchers",
+                    content: (
+                      <div className="p-8 rounded-lg relative overflow-hidden">
+                        <div className="absolute inset-0" style={{
+                          background: "linear-gradient(to right, #000428, #004e92)",
+                          filter: "blur(20px)",
+                          transform: "scale(1.2)"
+                        }}></div>
+                        <div className="relative z-10">
+                          <h3 className="text-2xl font-bold text-white mb-4">For Researchers & Academic Institutions</h3>
+                          <ul className="list-disc pl-5 text-white space-y-2">
+                            <li>Train and validate medical AI models with gold-standard data</li>
+                            <li>Benchmark new algorithms against established medical knowledge</li>
+                            <li>Access diverse medical scenarios for robust model development</li>
+                            <li>Support research in medical NLP, question-answering, and clinical decision support</li>
+                          </ul>
+                          <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                            Access Datasets
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    title: "Healthcare Technology",
+                    value: "Healthcare",
+                    content: (
+                      <div className="p-8 rounded-lg relative overflow-hidden">
+                        <div className="absolute inset-0" style={{
+                          background: "linear-gradient(to right, #155799, #159957)",
+                          filter: "blur(20px)",
+                          transform: "scale(1.2)"
+                        }}></div>
+                        <div className="relative z-10">
+                          <h3 className="text-2xl font-bold text-white mb-4">For Healthcare Technology Companies</h3>
+                          <ul className="list-disc pl-5 text-white space-y-2">
+                            <li>Accelerate time-to-market with production-ready training data</li>
+                            <li>Build more accurate diagnostic and decision support tools</li>
+                            <li>Reduce data acquisition and annotation costs</li>
+                            <li>Create superior medical AI applications with comprehensive knowledge coverage</li>
+                          </ul>
+                          <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                            Access Datasets
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    title: "Medical Education",
+                    value: "Medical",
+                    content: (
+                      <div className="p-8 rounded-lg relative overflow-hidden">
+                        <div className="absolute inset-0" style={{
+                          background: "linear-gradient(to right, #3a6186, #89253e)",
+                          filter: "blur(20px)",
+                          transform: "scale(1.2)"
+                        }}></div>
+                        <div className="relative z-10">
+                          <h3 className="text-2xl font-bold text-white mb-4">For Medical Education Platforms</h3>
+                          <ul className="list-disc pl-5 text-white space-y-2">
+                            <li>Develop intelligent tutoring systems with expert-level knowledge</li>
+                            <li>Create adaptive learning experiences based on proven medical content</li>
+                            <li>Generate unlimited practice questions and explanations</li>
+                            <li>Build systems that provide evidence-based explanations</li>
+                          </ul>
+                          <button className="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                            Access Datasets
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  }
+                ]}
+                containerClassName="bg-black"
+                activeTabClassName="bg-blue-900/40"
+                tabClassName="text-white hover:text-white transition-all"
+                contentClassName="mt-8"
+              />
+            </div>
+          </div>
         </div>
 
+        {/* Spacer to add gap between sections */}
+        <div className="bg-black py-32"></div>
+
         {/* BentoGrid Section */}
-        <section className="pt-0 pb-10 bg-black -mt-16">
+        <section className="pt-28 pb-10 bg-black">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-12 text-white italic" style={{ fontFamily: 'cursive, serif' }}>Why Choose DataMaster</h2>
+            <h2 className="text-4xl font-medium text-center mb-12 text-white italic" style={{ fontFamily: 'cursive, serif' }}>AI & ML Applications in Healthcare</h2>
             <BentoGrid className="max-w-4xl mx-auto">
               {items.map((item, i) => (
                 <BentoGridItem
@@ -460,6 +512,56 @@ print(common_terms)`}
           </div>
         </section>
 
+        {/* Timeline Section - How It Works */}
+<section className="bg-black py-16">
+  <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
+    <Timeline  
+              data={[
+                {
+                  title: "1. Complete Purchase",
+                  content: (
+                    <div className="bg-black/20 p-6 rounded-xl backdrop-blur-sm border border-white/10">
+                      <p className="text-gray-300">
+                        Click the "Purchase Now" button and complete the secure payment process through our payment gateway.
+                      </p>
+                    </div>
+                  ),
+                },
+                {
+                  title: "2. Receive Download Link",
+                  content: (
+                    <div className="bg-black/20 p-6 rounded-xl backdrop-blur-sm border border-white/10">
+                      <p className="text-gray-300">
+                        Upon payment confirmation, you'll immediately receive an email with your secure download link to access the datasets.
+                      </p>
+                    </div>
+                  ),
+                },
+                {
+                  title: "3. Download ZIP File",
+                  content: (
+                    <div className="bg-black/20 p-6 rounded-xl backdrop-blur-sm border border-white/10">
+                      <p className="text-gray-300">
+                        Download the compressed ZIP file containing all datasets, documentation, and example code to your local system.
+                      </p>
+                    </div>
+                  ),
+                },
+                {
+                  title: "4. Extract & Integrate",
+                  content: (
+                    <div className="bg-black/20 p-6 rounded-xl backdrop-blur-sm border border-white/10">
+                      <p className="text-gray-300">
+                        Extract the files and begin integrating the datasets into your AI development workflow using our example code as a starting point.
+                      </p>
+                    </div>
+                  ),
+                },
+              ]}
+            />
+          </div>
+        </section>
+
         {/* Testimonials Section */}
         <section className="bg-black pt-0">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
@@ -618,46 +720,116 @@ const Skeleton = () => (
 
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Clinical Decision Support</span>,
+    description: "Assist healthcare providers with evidence-based recommendations",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/clinical.webp"
+          alt="Clinical Decision Support"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconStethoscope className="h-4 w-4 text-blue-400" />,
   },
   {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
-    icon: <IconFileBroken className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Medical Q&A Systems</span>,
+    description: "Answer patient and provider questions about conditions, treatments, and medications",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/qna.webp"
+          alt="Medical Q&A Systems"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconMessageQuestion className="h-4 w-4 text-green-400" />,
   },
   {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    header: <Skeleton />,
-    icon: <IconSignature className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Medical Education Tools</span>,
+    description: "Create intelligent tutoring systems and training simulations",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/medical-tools.webp"
+          alt="Medical Education Tools"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconSchool className="h-4 w-4 text-yellow-400" />,
   },
   {
-    title: "The Power of Communication",
-    description: "Understand the impact of effective communication in our lives.",
-    header: <Skeleton />,
-    icon: <IconTableColumn className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Patient Information Systems</span>,
+    description: "Generate accurate, accessible information for patients",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/information.webp"
+          alt="Patient Information Systems"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconUserCircle className="h-4 w-4 text-purple-400" />,
   },
   {
-    title: "The Pursuit of Knowledge",
-    description: "Join the quest for understanding and enlightenment.",
-    header: <Skeleton />,
-    icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Medication Management</span>,
+    description: "Provide guidance on drug usage, interactions, and side effects",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/management.webp"
+          alt="Medication Management"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconPill className="h-4 w-4 text-red-400" />,
   },
   {
-    title: "The Joy of Creation",
-    description: "Experience the thrill of bringing ideas to life.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignTopLeft className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Medical Documentation</span>,
+    description: "Aid in creating and processing medical records and documentation",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/documentation.webp"
+          alt="Medical Documentation"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconFileText className="h-4 w-4 text-teal-400" />,
   },
   {
-    title: "The Spirit of Adventure",
-    description: "Embark on exciting journeys and thrilling discoveries.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-400" />,
+    title: <span className="text-white">Diagnostic Support</span>,
+    description: "Help analyze symptoms and suggest possible diagnoses for further investigation",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
+        <Image
+          src="/optimized-images/support.webp"
+          alt="Diagnostic Support"
+          fill
+          className="object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    ),
+    icon: <IconHeartbeat className="h-4 w-4 text-pink-500" />,
   },
 ];
 

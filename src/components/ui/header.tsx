@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import {
   MobileNav,
@@ -36,6 +36,15 @@ const navItems = [
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(0);
+  
+  // Get viewport height on client side
+  useEffect(() => {
+    setViewportHeight(window.innerHeight);
+    const handleResize = () => setViewportHeight(window.innerHeight);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Get scroll progress values from Framer Motion
   const { scrollY } = useScroll();
@@ -47,68 +56,71 @@ export const Header = () => {
     restDelta: 0.001
   });
   
-  // Transform scroll values into visual properties
+  // Calculate a higher scroll threshold to account for MacbookScroll (about 1 viewport height total)
+  const scrollThreshold = viewportHeight;
+  
+  // Transform scroll values into visual properties with extended range
   const headerWidth = useTransform(
     scrollYSpring, 
-    [0, 200], 
+    [0, scrollThreshold], 
     ["100%", "84%"]
   );
   
   const headerBorderRadius = useTransform(
     scrollYSpring,
-    [0, 200],
+    [0, scrollThreshold],
     [0, 20]  // Increased border radius for more pronounced pill shape
   );
   
   // Adjusted background for glassmorphism
   const headerBackgroundOpacity = useTransform(
     scrollYSpring,
-    [0, 100, 200],
+    [0, scrollThreshold * 0.5, scrollThreshold],
     [0.6, 0.8, 0.9]  // Increased opacity to make content below less visible
   );
   
   // Enhanced blur effect for glassmorphism
   const headerBlur = useTransform(
     scrollYSpring,
-    [0, 50, 150, 200],
+    [0, scrollThreshold * 0.25, scrollThreshold * 0.75, scrollThreshold],
     [5, 15, 25, 35]  // Increased blur values to obscure content below
   );
   
   const headerY = useTransform(
     scrollYSpring,
-    [0, 200],
+    [0, scrollThreshold],
     [0, 8]
   );
   
   const headerScale = useTransform(
     scrollYSpring,
-    [0, 200],
+    [0, scrollThreshold],
     [1, 0.98]
   );
   
   const paddingY = useTransform(
     scrollYSpring,
-    [0, 200],
+    [0, scrollThreshold],
     [1, 0.6]  // Adjusted for better proportions
   );
   
   const shadowOpacity = useTransform(
     scrollYSpring,
-    [0, 200],
+    [0, scrollThreshold],
     [0, 0.15]  // Subtler shadow for glassmorphism
   );
   
   // New transform for border opacity to achieve glassmorphism effect
   const borderOpacity = useTransform(
     scrollYSpring,
-    [0, 100, 200],
+    [0, scrollThreshold * 0.5, scrollThreshold],
     [0, 0.1, 0.15]
   );
   
   // New transform for top highlight to achieve glassmorphism effect
   const highlightOpacity = useTransform(
     scrollYSpring,
-    [0, 100, 200],
+    [0, scrollThreshold * 0.5, scrollThreshold],
     [0, 0.05, 0.08]
   );
   
