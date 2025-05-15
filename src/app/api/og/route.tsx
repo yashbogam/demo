@@ -6,11 +6,10 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
 
-    // ?title=<title>
     const hasTitle = searchParams.has('title');
-    const title = hasTitle
+    const pageTitle = hasTitle
       ? searchParams.get('title')?.slice(0, 100)
-      : 'DataMaster'; // Default title
+      : 'High-Quality Medical Datasets'; // Default page title if not provided
 
     // For custom fonts, you'd fetch the font data here
     // Example: const fontData = await fetch(new URL('../../../../assets/GeistVariableVF.woff2', import.meta.url)).then(res => res.arrayBuffer());
@@ -26,26 +25,56 @@ export async function GET(request: Request) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'black',
-            fontSize: 60,
-            fontWeight: 700,
+            backgroundColor: '#0a2463', // Dark blue from WavyBackground
             color: 'white',
-            fontFamily: '"Geist Sans", sans-serif', // Using Geist Sans with fallback
-            padding: '40px',
+            fontFamily: 'sans-serif', // Using a common sans-serif, ensure Geist is loaded if used
+            padding: '60px', // Increased padding
             textAlign: 'center',
           }}
         >
-          <div style={{ marginBottom: 30, fontSize: 80 }}>
-            DataMaster 🏥
+          {/* Top Branding */}
+          <div style={{ position: 'absolute', top: '40px', left: '40px', fontSize: 30, display: 'flex', alignItems: 'center' }}>
+            DataMaster ��
           </div>
+
+          {/* Main Hero Heading */}
           <div
             style={{
-              fontSize: 48,
-              color: '#BBBBBB',
+              fontSize: 72, // Larger font size for main heading
+              fontWeight: 'bold', // Bold
+              marginBottom: '25px',
+              lineHeight: '1.2',
             }}
           >
-            {title}
+            Comprehensive Medical Datasets for Research & Developers
           </div>
+
+          {/* Sub-description */}
+          <div
+            style={{
+              fontSize: 38, // Adjusted font size for description
+              color: '#E0E0E0', // Lighter color for subheading
+              maxWidth: '900px', // Max width for readability
+              marginBottom: '40px',
+              lineHeight: '1.5',
+            }}
+          >
+            Access high-quality healthcare data to accelerate your medical research, analytics, and machine learning projects.
+          </div>
+          
+          {/* Page Title from params - smaller at the bottom */}
+          {hasTitle && (
+            <div
+              style={{
+                fontSize: 28,
+                color: '#A0A0A0',
+                position: 'absolute',
+                bottom: '40px',
+              }}
+            >
+              {pageTitle}
+            </div>
+          )}
         </div>
       ),
       {
@@ -63,7 +92,7 @@ export async function GET(request: Request) {
     );
   } catch (e: Error | unknown) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error';
-    console.log(`${errorMessage}`);
+    console.log(`Failed to generate OG image: ${errorMessage}`);
     return new Response(`Failed to generate the image`, {
       status: 500,
     });

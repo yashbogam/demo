@@ -149,7 +149,7 @@ export default function ExpandableCardDemo() {
             </div>
             <motion.button
               layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 self-start"
+              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 text-black group-hover:bg-black group-hover:text-white hover:bg-green-500 hover:text-white hover:cursor-grab mt-4 self-start"
               onClick={(e) => {
                 e.stopPropagation();
                 setActive(card);

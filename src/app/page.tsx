@@ -217,8 +217,8 @@ export default function Home() {
         <div className="bg-black pt-12 pb-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-white">Key Benefits</h2>
-              <p className="text-xl mt-4 text-gray-300 max-w-3xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white">Key Benefits</h2>
+              <p className="text-lg sm:text-xl mt-4 text-gray-300 max-w-3xl mx-auto">
                 Why leading healthcare AI researchers and companies choose our datasets
               </p>
             </div>
@@ -232,7 +232,7 @@ export default function Home() {
         <div className="bg-black py-16 pb-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-white">Why Choose Our Medical Datasets?</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white">Why Choose Our Medical Datasets?</h2>
             </div>
             <div className="mx-auto max-w-4xl">
               <Tabs 
@@ -329,12 +329,12 @@ export default function Home() {
         </div>
 
         {/* Spacer to add gap between sections */}
-        <div className="bg-black py-32"></div>
+        <div className="bg-black py-40 md:py-32"></div>
 
         {/* BentoGrid Section */}
         <section className="pt-28 pb-10 bg-black">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-12 text-white italic" style={{ fontFamily: 'cursive, serif' }}>AI & ML Applications in Healthcare</h2>
+            <h2 className="text-3xl sm:text-4xl font-medium text-center mb-12 text-white italic" style={{ fontFamily: 'cursive, serif' }}>AI & ML Applications in Healthcare</h2>
             <BentoGrid className="max-w-4xl mx-auto">
               {items.map((item, i) => (
                 <BentoGridItem
@@ -353,9 +353,9 @@ export default function Home() {
         {/* Code Example Section */}
         <section className="bg-black pt-4 pb-12">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h3 className="text-2xl font-medium text-center mb-2 text-white">Example Python Notebook</h3>
+            <h3 className="text-xl sm:text-2xl font-medium text-center mb-2 text-white">Example Python Notebook</h3>
             <p className="text-center text-gray-300 mb-4">Get started quickly with our datasets using this sample code</p>
-            <h4 className="text-xl font-medium text-center mb-8 text-white/80">Loading and Using the Medical Datasets</h4>
+            <h4 className="text-lg sm:text-xl font-medium text-center mb-8 text-white/80">Loading and Using the Medical Datasets</h4>
             <div className="max-w-3xl mx-auto">
               <CollapsibleCodeBlock
                 language="python"
@@ -499,7 +499,7 @@ print(common_terms)`}
         {/* Logo Slider Section */}
         <section className="bg-black pt-0 pb-16">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-2xl text-center mb-8 text-white/70">TRUSTED BY DEVELOPERS FROM AROUND THE WORLD </h2>
+            <h2 className="text-xl sm:text-2xl text-center mb-8 text-white/70">TRUSTED BY DEVELOPERS FROM AROUND THE WORLD </h2>
             <InfiniteLogoSlider logos={partnerLogos} speed={60} />
           </div>
         </section>
@@ -517,7 +517,7 @@ print(common_terms)`}
         {/* Applications & Use Cases Section */}
         <section className="bg-black py-16 pt-16">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-12 text-white">Applications & Use Cases</h2>
+            <h2 className="text-3xl sm:text-4xl font-medium text-center mb-12 text-white">Applications & Use Cases</h2>
             <HoverEffect items={cardItems} />
           </div>
         </section>
@@ -528,7 +528,7 @@ print(common_terms)`}
             <div className="flex flex-col md:flex-row items-center justify-center text-center">
               <p className="text-white text-xl mr-4">Access Sample datasets here:</p>
               <div className="flex flex-col md:flex-row items-center justify-center mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-6">
-                <div>
+                <div className="w-full max-w-[300px] mx-auto md:w-auto md:mx-0">
                   <LinkPreview 
                     url="https://link.datamaster.tech/kaggle"
                     width={300}
@@ -540,7 +540,7 @@ print(common_terms)`}
                   </LinkPreview>
                 </div>
                 
-                <div>
+                <div className="w-full max-w-[300px] mx-auto md:w-auto md:mx-0">
                   <LinkPreview 
                     url="https://link.datamaster.tech/huggingface"
                     width={300}
@@ -609,7 +609,7 @@ print(common_terms)`}
         {/* Testimonials Section */}
         <section className="bg-black pt-0">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-8 text-white">What Our Users Say</h2>
+            <h2 className="text-3xl sm:text-4xl font-medium text-center mb-8 text-white">What Our Users Say</h2>
             <div className="max-w-5xl mx-auto rounded-2xl">
               <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
             </div>
@@ -619,7 +619,7 @@ print(common_terms)`}
         {/* FAQ Section */}
         <section className="bg-black py-16">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-4xl font-medium text-center mb-12 text-white">Frequently Asked Questions</h2>
+            <h2 className="text-3xl sm:text-4xl font-medium text-center mb-12 text-white">Frequently Asked Questions</h2>
             <div className="max-w-3xl mx-auto">
               <FAQ />
             </div>
@@ -632,7 +632,7 @@ print(common_terms)`}
             <div className="flex flex-col md:flex-row items-stretch justify-between max-w-6xl mx-auto">
               {/* Left Side - 3D Pin */}
               <div className="w-full md:w-1/2 flex items-center justify-center p-8 mb-12 md:mb-0 order-2 md:order-1">
-                <div className="h-64">
+                <div className="h-auto min-h-[14rem] sm:min-h-[16rem] w-full flex items-center justify-center">
                   <PinContainer
                     title="Contact Our Team"
                     href="mailto:harryjosh@datamaster.tech"
@@ -673,7 +673,7 @@ print(common_terms)`}
                     <PulsatingButton 
                       pulseColor="f8f9f5" 
                       duration="10s"
-                      className="px-8 py-3 rounded-full bg-white text-black hover:bg-gray-200 transition-colors"
+                      className="px-6 py-3 sm:px-8 rounded-full bg-white text-black hover:bg-gray-200 transition-colors"
                     >
                       Access now
                     </PulsatingButton>

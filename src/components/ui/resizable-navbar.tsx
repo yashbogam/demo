@@ -334,9 +334,6 @@ export const MobileNavMenu = memo(({
           )}
         >
           <div className="flex flex-col space-y-2">{children}</div>
-          <button onClick={onClose} className="absolute right-4 top-4">
-            <IconX className="h-6 w-6 text-white" />
-          </button>
         </motion.div>
       )}
     </AnimatePresence>

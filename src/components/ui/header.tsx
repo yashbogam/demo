@@ -132,7 +132,7 @@ export const Header = () => {
       transition={{ duration: 0.5 }}
     >
       <motion.div
-        className="relative z-[60] flex w-full flex-row items-center justify-between px-4 py-3 lg:flex text-white mx-auto"
+        className="relative z-[60] hidden w-full flex-row items-center justify-between px-4 py-3 lg:flex text-white mx-auto"
         style={{
           width: headerWidth,
           borderRadius: headerBorderRadius,
