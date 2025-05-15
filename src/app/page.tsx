@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Timeline } from "@/components/ui/timeline";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
-import { IconStethoscope, IconMessageQuestion, IconSchool, IconUserCircle, IconPill, IconFileText, IconHeartbeat } from "@tabler/icons-react";
+import { IconStethoscope, IconMessageQuestion, IconSchool, IconUserCircle, IconPill, IconFileText, IconHeartbeat, IconBrandTwitter, IconBrandLinkedin, IconBrandGithub, IconMail } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { PageWrapper } from "@/components/ui/page-wrapper";
 import { CodeBlock } from "@/components/ui/code-block";
@@ -20,28 +20,136 @@ import { CollapsibleCodeBlock } from "@/components/ui/collapsible-code-block";
 // Import ExpandableCardDemo components
 import ExpandableCardDemoStandard from "@/components/expandable-card-demo-standard";
 
+// Sample data for BentoGrid items
+const items = [
+  {
+    title: "Clinical Decision Support",
+    description: "AI-powered systems that assist healthcare providers in making informed clinical decisions based on patient data and medical knowledge.",
+    header: <IconStethoscope className="h-8 w-8 text-neutral-500" />,
+    icon: <IconStethoscope className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Medical Q&A Systems",
+    description: "Intelligent systems that can answer medical questions with evidence-based responses, supporting both healthcare professionals and patients.",
+    header: <IconMessageQuestion className="h-8 w-8 text-neutral-500" />,
+    icon: <IconMessageQuestion className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Medical Education",
+    description: "Advanced learning platforms that adapt to individual needs, providing personalized medical education experiences.",
+    header: <IconSchool className="h-8 w-8 text-neutral-500" />,
+    icon: <IconSchool className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Patient Care Management",
+    description: "Comprehensive systems for managing patient care, including monitoring, treatment planning, and follow-up care coordination.",
+    header: <IconUserCircle className="h-8 w-8 text-neutral-500" />,
+    icon: <IconUserCircle className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Drug Discovery",
+    description: "AI-driven approaches to accelerate drug discovery by analyzing medical data and identifying potential therapeutic candidates.",
+    header: <IconPill className="h-8 w-8 text-neutral-500" />,
+    icon: <IconPill className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Medical Documentation",
+    description: "Automated systems for generating and managing medical documentation, improving efficiency and accuracy in healthcare records.",
+    header: <IconFileText className="h-8 w-8 text-neutral-500" />,
+    icon: <IconFileText className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Health Monitoring",
+    description: "Real-time health monitoring systems that use AI to detect and predict potential health issues before they become serious.",
+    header: <IconHeartbeat className="h-8 w-8 text-neutral-500" />,
+    icon: <IconHeartbeat className="h-4 w-4 text-neutral-500" />,
+  },
+];
+
+// Sample data for sticky scroll content
+const stickyScrollContent = [
+  {
+    title: "Comprehensive Medical Knowledge",
+    description: "Access a vast repository of medical knowledge curated from trusted sources, covering everything from basic anatomy to complex disease mechanisms.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
+        Comprehensive Medical Knowledge
+      </div>
+    ),
+  },
+  {
+    title: "Clinical Q&A Dataset",
+    description: "Extensive collection of real clinical questions and expert answers, perfect for training medical AI systems and supporting healthcare professionals.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--purple-500),var(--pink-500))] flex items-center justify-center text-white">
+        Clinical Q&A Dataset
+      </div>
+    ),
+  },
+  {
+    title: "Medical Examination Data",
+    description: "Comprehensive medical examination questions and detailed explanations, ideal for educational platforms and assessment systems.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--blue-500),var(--teal-500))] flex items-center justify-center text-white">
+        Medical Examination Data
+      </div>
+    ),
+  },
+];
+
+// Sample data for card items
+const cardItems = [
+  {
+    title: "Clinical Decision Support Systems",
+    description: "Build AI-powered systems that assist healthcare providers in making informed clinical decisions.",
+    link: "#"
+  },
+  {
+    title: "Medical Education Platforms",
+    description: "Create adaptive learning experiences for medical students and healthcare professionals.",
+    link: "#"
+  },
+  {
+    title: "Healthcare Chatbots",
+    description: "Develop intelligent chatbots that can provide accurate medical information and support.",
+    link: "#"
+  },
+  {
+    title: "Drug Discovery",
+    description: "Accelerate drug discovery processes with AI-driven analysis of medical data.",
+    link: "#"
+  },
+  {
+    title: "Patient Care Management",
+    description: "Implement comprehensive systems for managing and optimizing patient care.",
+    link: "#"
+  },
+  {
+    title: "Medical Research",
+    description: "Support groundbreaking medical research with high-quality healthcare datasets.",
+    link: "#"
+  }
+];
+
 // Generate Open Graph metadata
 export async function generateMetadata(): Promise<Metadata> {
-  const pageTitle = "Accelerate Your Medical Research with DataMaster"; // Example title for the homepage OG image
+  const pageTitle = "Accelerate Your Medical Research with DataMaster";
   const ogImageUrl = `/api/og?title=${encodeURIComponent(pageTitle)}`;
   
-  // Determine the base URL - use environment variable if available, or fallback
   let baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   if (!baseUrl) {
-    // For local development or when env isn't available
     baseUrl = process.env.NODE_ENV === 'development' 
       ? 'http://localhost:3000' 
       : 'https://datamaster.vercel.app';
   }
 
   return {
-    // You can add other metadata here if needed, like title, description for the page itself
     title: "DataMaster - Medical Research Platform",
     description: "Access high-quality healthcare data to accelerate your research, analytics, and ML projects.",
     metadataBase: new URL(baseUrl),
     openGraph: {
-      title: "DataMaster - Advancing Medical Research", // OG specific title
-      description: "High-quality healthcare data, analytics, and ML projects.", // OG specific description
+      title: "DataMaster - Advancing Medical Research",
+      description: "High-quality healthcare data, analytics, and ML projects.",
       images: [
         {
           url: ogImageUrl,
@@ -81,7 +189,6 @@ const PinContainer = dynamic(() => import("@/components/ui/3d-pin").then(mod => 
 const LinkPreview = dynamic(() => import("@/components/ui/link-preview").then(mod => mod.LinkPreview), {
   loading: () => <p>Loading preview...</p>,
 });
-
 const BentoGrid = dynamic(() => import("@/components/ui/bento-grid").then(mod => mod.BentoGrid), {
   loading: () => <p>Loading grid...</p>,
 });
@@ -89,7 +196,7 @@ const StickyScroll = dynamic(() => import("@/components/ui/sticky-scroll-reveal"
   loading: () => <p>Loading scroll content...</p>,
 });
 
-// Sample testimonials data for the AnimatedTestimonials component
+// Sample testimonials data
 const testimonials = [
   {
     src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070&auto=format&fit=crop",
@@ -101,7 +208,7 @@ const testimonials = [
     src: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop",
     name: "James Wilson",
     designation: "Data Scientist at Mayo Clinic",
-    quote: "DataMaster has made clinical data analysis accessible to our entire team. It&apos;s now an essential part of our daily workflow.",
+    quote: "DataMaster has made clinical data analysis accessible to our entire team. It's now an essential part of our daily workflow.",
   },
   {
     src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop",
@@ -648,4 +755,31 @@ print(common_terms)`}
                 <h4 className="text-white font-semibold mb-6">Resources</h4>
                 <ul className="space-y-3">
                   <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
-                  
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">API Reference</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sample Code</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-white font-semibold mb-6">Company</h4>
+                <ul className="space-y-3">
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-800 pt-8">
+              <p className="text-center text-gray-400">
+                © {new Date().getFullYear()} DataMaster. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </PageWrapper>
+  );
+}
