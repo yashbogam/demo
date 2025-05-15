@@ -540,6 +540,8 @@ print(common_terms)`}
                   </LinkPreview>
                 </div>
                 
+                <span className="hidden md:inline text-white text-xl mx-2">and</span>
+
                 <div className="w-full max-w-[300px] mx-auto md:w-auto md:mx-0">
                   <LinkPreview 
                     url="https://link.datamaster.tech/huggingface"

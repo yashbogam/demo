@@ -178,8 +178,10 @@ export const Header = () => {
         </div>
       </motion.div>
       
-      <MobileNav>
-        <div className="flex items-center justify-between w-full p-4">
+      {/* Mobile header section wrapper */}
+      <div className="lg:hidden w-full bg-transparent">
+        {/* Pill-shaped bar */}
+        <div className="flex items-center justify-between w-[calc(100%-2rem)] sm:w-auto sm:min-w-[320px] sm:max-w-xs mx-auto rounded-full bg-black/70 backdrop-blur-md p-3 shadow-lg my-2">
           <NavbarLogo />
           <MobileNavToggle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </div>
@@ -204,7 +206,7 @@ export const Header = () => {
             </NavbarButton>
           </div>
         </MobileNavMenu>
-      </MobileNav>
+      </div>
     </motion.div>
   );
 }; 
