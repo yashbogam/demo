@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Timeline } from "@/components/ui/timeline";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
-import { IconStethoscope, IconMessageQuestion, IconSchool, IconUserCircle, IconPill, IconFileText, IconHeartbeat, IconBrandTwitter, IconBrandLinkedin, IconBrandGithub, IconMail } from "@tabler/icons-react";
+import { IconStethoscope, IconMessageQuestion, IconSchool, IconUserCircle, IconPill, IconFileText, IconHeartbeat, IconBrandTwitter, IconBrandLinkedin, IconBrandGithub, IconMail, IconArrowRight } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { PageWrapper } from "@/components/ui/page-wrapper";
 import { CodeBlock } from "@/components/ui/code-block";
@@ -182,9 +182,6 @@ const InfiniteLogoSlider = dynamic(() => import("@/components/ui/infinite-logo-s
 });
 const FAQ = dynamic(() => import("@/components/ui/faq"), {
   loading: () => <p>Loading FAQ...</p>,
-});
-const PinContainer = dynamic(() => import("@/components/ui/3d-pin").then(mod => mod.PinContainer), {
-  loading: () => <p>Loading pin...</p>,
 });
 const LinkPreview = dynamic(() => import("@/components/ui/link-preview").then(mod => mod.LinkPreview), {
   loading: () => <p>Loading preview...</p>,
@@ -672,114 +669,4 @@ print(common_terms)`}
                   ),
                 },
                 {
-                  title: "3. Download ZIP File",
-                  content: (
-                    <div className="bg-black/20 p-6 rounded-xl backdrop-blur-sm border border-white/10">
-                      <p className="text-gray-300">
-                        Download the compressed ZIP file containing all datasets, documentation, and example code to your local system.
-                      </p>
-                    </div>
-                  ),
-                },
-                {
-                  title: "4. Extract & Integrate",
-                  content: (
-                    <div className="bg-black/20 p-6 rounded-xl backdrop-blur-sm border border-white/10">
-                      <p className="text-gray-300">
-                        Extract the files and begin integrating the datasets into your AI development workflow using our example code as a starting point.
-                      </p>
-                    </div>
-                  ),
-                },
-              ]}
-            />
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="bg-black pt-0">
-          <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-medium text-center mb-8 text-white">What Our Users Say</h2>
-            <div className="max-w-5xl mx-auto rounded-2xl">
-              <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="bg-black py-16">
-          <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-medium text-center mb-12 text-white">Frequently Asked Questions</h2>
-            <div className="max-w-3xl mx-auto">
-              <FAQ />
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-t from-blue-950/30 to-black pt-16 pb-8">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
-              <div>
-                <h3 className="text-xl font-bold text-white mb-6">DataMaster</h3>
-                <p className="text-gray-400 mb-6">
-                  Empowering healthcare research with advanced data analytics and secure access to medical datasets.
-                </p>
-                <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    <IconBrandTwitter className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    <IconBrandLinkedin className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    <IconBrandGithub className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    <IconMail className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="text-white font-semibold mb-6">Products</h4>
-                <ul className="space-y-3">
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Datasets</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Analytics</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">API Access</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Integrations</a></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-white font-semibold mb-6">Resources</h4>
-                <ul className="space-y-3">
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">API Reference</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sample Code</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-white font-semibold mb-6">Company</h4>
-                <ul className="space-y-3">
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="border-t border-gray-800 pt-8">
-              <p className="text-center text-gray-400">
-                © {new Date().getFullYear()} DataMaster. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </PageWrapper>
-  );
-}
+                  title:
